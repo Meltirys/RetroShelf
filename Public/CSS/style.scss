@@ -1,15 +1,9 @@
-//Couleurs de fonds
-$bg-cream: #EEE8D4;
-$retro-header: #403D3C; 
-$retro-yellow: #FFB702;
-$card-beige: #C8C4BC;  
-//Couleurs de texte
-$retro-black: #1A1A1A;
-$retro-text: #5B4103;
-//Couleurs de contraste
-$retro-blue: #2E4EDC;
-$retro-red: #eb5937;
+// ========================================
+// Fichier : style.scss
+// ========================================
 
+@import 'variables';
+@import 'mixins';
 
 @font-face {
     font-family: 'space grotesk';
@@ -26,6 +20,7 @@ $retro-red: #eb5937;
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face {
     font-family: 'roboto';
     src: url('../CSS/fonts/roboto-variablefont_wdthwght-webfont.woff2') format('woff2'),
@@ -38,6 +33,12 @@ $retro-red: #eb5937;
     background-color: $bg-cream;
 }
 
+body {
+    background-color: $bg-cream;
+    color: $retro-black;
+    font-family: $font-text;
+}
+
 //=======
 // Header
 //=======
@@ -45,7 +46,6 @@ $retro-red: #eb5937;
     background-color: $retro-header;
     border: 2px solid $retro-black;
     box-shadow: 4px 4px 0 $retro-black;
-    position: -webkit-sticky;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -57,6 +57,11 @@ $retro-red: #eb5937;
     padding: 1rem 1.5rem;
     align-items: center;
     gap: 1rem;
+
+    @include tablette {
+        padding: 1rem 2rem;
+        justify-content: space-between;
+    }
 }
 
 .header-actions {
@@ -64,6 +69,10 @@ $retro-red: #eb5937;
     align-items: center;
     gap: 0.5rem;
     margin-left: auto;
+
+    @include tablette {
+        margin-left: 0;
+    }
 }
 
 .logo a {
@@ -77,6 +86,7 @@ $retro-red: #eb5937;
     width: auto;
     display: block;
 }
+
 .nav ul {
     display: flex;
     align-items: center;
@@ -85,13 +95,14 @@ $retro-red: #eb5937;
 
 .nav ul li a {
     color: #FFFFFF;
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.6rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     white-space: nowrap;
 }
+
 .nav ul li a:hover { 
     color: $retro-yellow; 
 }
@@ -103,9 +114,7 @@ $retro-red: #eb5937;
     width: 38px;
     height: 38px;
     box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-center;
     flex-shrink: 0;
     cursor: pointer;
     padding: 0;
@@ -116,7 +125,6 @@ $retro-red: #eb5937;
     width: 20px;
     height: 20px;
     filter: invert(1);
-    -webkit-filter: invert(1);
 }
 
 // Menu déroulant utilisateur
@@ -148,7 +156,7 @@ $retro-red: #eb5937;
     padding: 12px 16px;
     color: #FFFFFF;
     text-decoration: none;
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -175,12 +183,14 @@ $retro-red: #eb5937;
     border: 2px solid #FFFFFF;
     width: 38px;
     height: 38px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-center;
     cursor: pointer;
     flex-shrink: 0;
     padding: 0;
+
+    @include tablette {
+        display: none;
+    }
 }
 
 .btn-search-toggle img {
@@ -194,6 +204,12 @@ $retro-red: #eb5937;
 // Barre de recherche
 .search-form {
     display: none;
+
+    @include tablette {
+        display: flex;
+        flex: 1;
+        max-width: 360px;
+    }
 }
 
 .search-form input[type="text"],
@@ -203,7 +219,7 @@ $retro-red: #eb5937;
     border: 2px solid #000000;
     border-right: none;
     padding: 0.625rem 1rem;
-    font-family: 'Space Grotesk';
+    font-family: $font-title;
     font-size: 0.875rem;
     font-weight: 700;
     letter-spacing: 0.1em;
@@ -220,7 +236,7 @@ $retro-red: #eb5937;
     display: flex;
     align-items: center;
     color: #000000;
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -235,50 +251,34 @@ $retro-red: #eb5937;
     background: $retro-header;
     border: 2px solid $retro-black;
     padding: 0.75rem 1.5rem;
-
 }
 
-@media (min-width: 768px) {
-    .btn-search-toggle {
-        display: none;
-    }
 
-    .header-content {
-        padding: 1rem 2rem;
-        justify-content: space-between;
-    }
-
-    .header-actions {
-        margin-left: 0;
-    }
-
-    .search-form {
-        display: flex;
-        flex: 1;
-        max-width: 360px;
-    }
-}
-
-body {
-    background-color: $bg-cream;
-    color: $retro-black;
-    font-family: 'Roboto';
-}
 //===============
 // Page d'accueil
 //===============
 
 .main-contener {
     padding-bottom: 2rem;
+
+    @include tablette {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 2rem 2rem 3rem;
+    }
 }
 
 // --- Hero banner ---
 .welcome {
     padding: 2rem 1.5rem;
+
+    @include tablette {
+        padding: 0 0 3rem;
+    }
 }
 
 .welcome h1 {
-    font-family: 'Space Grotesk';
+    font-family: $font-title;
     font-size: 1.875rem;
     font-weight: 700;
     line-height: 1.25;
@@ -290,30 +290,48 @@ body {
     box-shadow: 8px 8px 0 $retro-black;
     padding: 1.75rem;
     margin-bottom: 1.5rem;
+
+    @include tablette {
+        font-size: 3rem;
+        padding: 3.25rem;
+    }
 }
 
 .welcome p {
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 1rem;
     line-height: 1.625;
     color: $retro-black;
+
+    @include tablette {
+        font-size: 1.125rem;
+    }
 }
 
-// --- Sections highlights (wrapping .hightlights) ---
+// --- Sections highlights ---
 .hightlights {
     padding: 1.5rem 0 2rem;
 }
 
-// --- Titre de section avec bordure basse ---
-.games-hight-blue h2   { 
-    border-bottom: 4px solid #2E4EDC;
+.games-hight-blue h2 { 
+    border-bottom: 4px solid $retro-blue;
     display: inline-block; 
-}
-.games-hight-brown h2  { 
-    border-bottom: 4px solid #7D5800; 
+
+    @include tablette {
+        display: block;
+    }
 }
 
-// --- Conteneur de cartes : scroll horizontal sur mobile ---
+.games-hight-brown h2 { 
+    border-bottom: 4px solid #7D5800; 
+    display: inline-block;
+
+    @include tablette {
+        display: block;
+    }
+}
+
+// --- Conteneur de cartes ---
 .cards {
     display: flex;
     overflow-x: auto;
@@ -321,13 +339,20 @@ body {
     padding: 0 1.5rem 1rem;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
+
+    @include tablette {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 2rem;
+        padding: 0;
+        overflow: visible;
+    }
 }
 
 .cards::-webkit-scrollbar {
     display: none;
 }
 
-// Le <a> devient la carte visuelle
 .cards a {
     flex-shrink: 0;
     width: 250px;
@@ -339,6 +364,10 @@ body {
     padding: 16px;
     text-decoration: none;
     scroll-snap-align: start;
+
+    @include tablette {
+        width: auto;
+    }
 }
 
 .mini-card {
@@ -349,6 +378,10 @@ body {
     background: none;
     border: none;
     padding: 0;
+
+    @include tablette {
+        width: 100%;
+    }
 }
 
 .mini-card header {
@@ -367,7 +400,7 @@ body {
 }
 
 .mini-card .content p {
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 1rem;
     font-weight: 400;
     letter-spacing: -0.025em;
@@ -379,61 +412,12 @@ body {
 }
 
 .mini-card footer {
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.75rem;
     text-transform: uppercase;
     color: #7D5800;
     line-height: 1.33;
     text-decoration: none;
-}
-
-// DESKTOP (≥ 768px)
-
-@media (min-width: 768px) {
-
-    .main-contener {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 2rem 2rem 3rem;
-    }
-
-    // Hero plus grand
-    .welcome {
-        padding: 0 0 3rem;
-    }
-
-    .welcome h1 {
-        font-size: 3rem;
-        padding: 3.25rem;
-    }
-
-    .welcome p {
-        font-size: 1.125rem;
-    }
-
-    // Liserets de couleurs étirés
-
-    .games-hight-blue h2,
-    .games-hight-brown h2{
-        display: block;
-    }
-
-    // Grille fixe 5 colonnes sur desktop
-    .cards {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 2rem;
-        padding: 0;
-        overflow: visible;
-    }
-
-    .cards  a {
-        width: auto;
-    }
-
-    .mini-card {
-        width: 100%;
-    }
 }
 
 //==================
@@ -445,6 +429,10 @@ body {
     grid-template-columns: repeat(2,1fr);
     overflow: visible;
     padding: 0;
+
+    @include tablette {
+        grid-template-columns: repeat(5, 1fr);
+    }
 }
 
 #resultats.cards a {
@@ -460,12 +448,12 @@ body {
 }
 
 .search-keyword {
-    font-family: "space-grotesk";
+    font-family: $font-title;
     font-size: 1.25rem;
 }
 
 .result-para {
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-weight: 900;
     font-size: 0.8rem;
     text-transform: uppercase;
@@ -474,7 +462,7 @@ body {
 }
 
 .search-title {
-    font-family: 'space grotesk';
+    font-family: $font-title;
     font-weight: bolder;
     font-size: 3rem;
     text-transform: uppercase;
@@ -484,14 +472,6 @@ body {
     margin: 0;
     box-shadow: 0 10px 0 $retro-black;
     padding-bottom: 6px;
-
-}
-
-@media (min-width: 768px) {
-
-    #resultats.cards {
-        grid-template-columns: repeat(5, 1fr);
-    }
 }
 
 // ===========
@@ -509,7 +489,7 @@ body {
 }
 
 .profil-title {
-    font-family: 'Space Grotesk';
+    font-family: $font-title;
     font-weight: 700;
     font-size: 2rem;
     text-transform: uppercase;
@@ -518,7 +498,7 @@ body {
 }
 
 .profil-subtitle {
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-weight: 700;
     font-size: 0.75rem;
     letter-spacing: 0.2em;
@@ -550,7 +530,7 @@ body {
 }
 
 .form-group label {
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.1em;
@@ -558,39 +538,29 @@ body {
     color: $retro-black;
 }
 
-.form-group input {
-    border: 2px solid $retro-black;
-    padding: 0.625rem 0.875rem;
-    font-family: 'Space Grotesk';
-    font-size: 0.875rem;
-    background: $bg-cream;
-    outline: none;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.form-group input:focus {
-    border-color: $retro-blue;
-}
-
+.form-group input,
 .form-group textarea {
     border: 2px solid $retro-black;
     padding: 0.625rem 0.875rem;
-    font-family: 'Space Grotesk';
+    font-family: $font-title;
     font-size: 0.875rem;
     background: $bg-cream;
     outline: none;
     width: 100%;
     box-sizing: border-box;
+}
+
+.form-group textarea {
     resize: vertical;
 }
 
+.form-group input:focus,
 .form-group textarea:focus {
     border-color: $retro-blue;
 }
 
 .form-message {
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.875rem;
     font-weight: 600;
     border: 2px solid $retro-black;
@@ -599,7 +569,7 @@ body {
 }
 
 .form-helper {
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -610,7 +580,7 @@ body {
     border: 2px solid $retro-black;
     box-shadow: 4px 4px 0 $retro-black;
     padding: 0.75rem 1.5rem;
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.875rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -631,7 +601,7 @@ body {
 
 .tab-btn {
     padding: 0.75rem 1.5rem;
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.8rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -664,17 +634,14 @@ body {
     grid-template-columns: repeat(2, 1fr);
     overflow: visible;
     padding: 0;
+
+    @include tablette {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 .profil-cards a {
     width: auto;
-}
-
-@media (min-width: 768px) {
-    .profil-cards {
-        grid-template-columns: repeat(4, 1fr);
-    }
-    
 }
 
 // ==============
@@ -688,13 +655,29 @@ body {
     border: 2px solid $retro-black;
     box-shadow: 4px 4px 0 $retro-black;
     margin-bottom: 2rem;
+
+    @include tablette {
+        flex-direction: row;
+    }
 }
 
-.fiche-cover img {
-    width: 100%;
-    height: 280px;
-    object-fit: cover;
-    display: block;
+.fiche-cover {
+    @include tablette {
+        flex-shrink: 0;
+        padding: 1rem;
+    }
+
+    img {
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+        display: block;
+
+        @include tablette {
+            width: 280px;
+            height: 100%;
+        }
+    }
 }
 
 .fiche-info {
@@ -705,13 +688,17 @@ body {
 }
 
 .fiche-titre {
-    font-family: 'Space Grotesk';
+    font-family: $font-title;
     font-size: 1.75rem;
     font-weight: 700;
     text-transform: uppercase;
     color: $retro-black;
     margin: 0;
     line-height: 1.1;
+
+    @include tablette {
+        font-size: 2.5rem;
+    }
 }
 
 .fiche-separator {
@@ -727,7 +714,7 @@ body {
 }
 
 .fiche-label {
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.625rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -736,7 +723,7 @@ body {
 }
 
 .fiche-value {
-    font-family: 'Space Grotesk';
+    font-family: $font-title;
     font-size: 1rem;
     font-weight: 700;
     color: $retro-black;
@@ -749,7 +736,7 @@ body {
 }
 
 .badge-plateforme {
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.625rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -781,7 +768,7 @@ body {
     border: 2px solid $retro-black;
     box-shadow: 4px 4px 0 $retro-black;
     padding: 0.875rem;
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -796,7 +783,7 @@ body {
     border: 2px solid $retro-black;
     box-shadow: 4px 4px 0 $retro-black;
     padding: 0.875rem;
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -805,7 +792,7 @@ body {
 }
 
 .lien-admin {
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.75rem;
     color: $retro-text;
     text-transform: uppercase;
@@ -823,10 +810,7 @@ body {
     cursor: pointer;
 }
 
-.star-input.active {
-    color: $retro-yellow;
-}
-
+.star-input.active,
 .star-input.hover {
     color: $retro-yellow;
 }
@@ -844,10 +828,16 @@ body {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.75rem;
+
+    @include tablette {
+        flex-direction: row;
+        align-items: center;
+        gap: 1.5rem;
+    }
 }
 
 .notation-hint {
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.75rem;
     color: rgba(255, 255, 255, 0.6);
     text-transform: uppercase;
@@ -859,40 +849,9 @@ body {
     color: rgba(255, 255, 255, 0.3);
 }
 
-.notation-card .star-input.active {
-    color: $retro-yellow;
-}
-
+.notation-card .star-input.active,
 .notation-card .star-input.hover {
     color: $retro-yellow;
-}
-
-@media (min-width: 768px) {
-    .fiche-hero {
-        flex-direction: row;
-    }
-
-    .fiche-cover {
-        flex-shrink: 0;
-        padding: 1rem;
-    }
-
-    .fiche-cover img {
-        width: 280px;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-    }
-
-    .fiche-titre {
-        font-size: 2.5rem;
-    }
-
-    .notation-card {
-        flex-direction: row;
-        align-items: center;
-        gap: 1.5rem;
-    }
 }
 
 // Badge titre de section
@@ -900,7 +859,7 @@ body {
     display: block;
     background: $retro-black;
     color: #FFFFFF;
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -919,7 +878,7 @@ body {
     border: 2px solid $retro-black;
     padding: 1.5rem;
     background: #FFFFFF;
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.9rem;
     line-height: 1.6;
     color: $retro-black;
@@ -935,6 +894,10 @@ body {
     grid-template-columns: 1fr;
     gap: 1rem;
     margin-bottom: 1.5rem;
+
+    @include tablette {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 .commentaire-card {
@@ -961,7 +924,7 @@ body {
 }
 
 .commentaire-pseudo {
-    font-family: 'Space Grotesk';
+    font-family: $font-title;
     font-size: 0.875rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -970,7 +933,7 @@ body {
 }
 
 .commentaire-date {
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.625rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -978,7 +941,7 @@ body {
 }
 
 .commentaire-texte {
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.875rem;
     line-height: 1.5;
     color: $retro-black;
@@ -996,7 +959,7 @@ body {
 .commentaire-textarea {
     border: 2px solid $retro-black;
     padding: 0.75rem;
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.875rem;
     background: #FFFFFF;
     resize: vertical;
@@ -1010,7 +973,7 @@ body {
     color: #FFFFFF;
     border: 2px solid $retro-black;
     padding: 0.625rem 1.5rem;
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -1019,15 +982,9 @@ body {
 }
 
 .commentaires-vide {
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.875rem;
     color: rgba(30, 28, 16, 0.6);
-}
-
-@media (min-width: 768px) {
-    .commentaires-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
 }
 
 //==========
@@ -1050,7 +1007,7 @@ body {
 }
 
 .auth-screen-title {
-    font-family: 'automaton';
+    font-family: $font-accent;
     font-size: 1.25rem;
     color: $retro-yellow;
     text-align: center;
@@ -1068,7 +1025,7 @@ body {
 .auth-menu-btn {
     background: none;
     border: none;
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.875rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -1115,7 +1072,7 @@ body {
 }
 
 .auth-label {
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.625rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -1132,7 +1089,7 @@ body {
 .auth-input {
     border: 2px solid rgba(255, 255, 255, 0.3);
     padding: 0.75rem 1rem;
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.875rem;
     background: rgba(255, 255, 255, 0.05);
     color: #FFFFFF;
@@ -1152,7 +1109,7 @@ body {
     border: 2px solid $retro-yellow;
     box-shadow: 4px 4px 0 $retro-black;
     padding: 0.875rem;
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -1162,7 +1119,7 @@ body {
 }
 
 .auth-message {
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.875rem;
     color: $retro-red;
     border: 2px solid $retro-red;
@@ -1185,6 +1142,14 @@ body {
     flex-direction: column;
     gap: 1.5rem;
     padding: 1.5rem;
+
+    @include tablette {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.25rem 2rem;
+        gap: 0;
+    }
 }
 
 .footer-brand {
@@ -1194,14 +1159,14 @@ body {
 }
 
 .footer-logo {
-    font-family: 'automaton';
+    font-family: $font-accent;
     font-size: 1rem;
     color: #FFFFFF;
     letter-spacing: 0.05em;
 }
 
 .footer-copy {
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.625rem;
     color: rgba(255, 255, 255, 0.5);
     text-transform: uppercase;
@@ -1214,7 +1179,7 @@ body {
 }
 
 .footer-nav a {
-    font-family: 'Roboto';
+    font-family: $font-text;
     font-size: 0.625rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -1236,10 +1201,8 @@ body {
     width: 32px;
     height: 32px;
     border: 2px solid rgba(255, 255, 255, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Roboto';
+    @include flex-center;
+    font-family: $font-text;
     font-size: 0.625rem;
     font-weight: 700;
     color: rgba(255, 255, 255, 0.7);
@@ -1249,16 +1212,6 @@ body {
 .footer-social-btn:hover {
     border-color: $retro-yellow;
     color: $retro-yellow;
-}
-
-@media (min-width: 768px) {
-    .footer-content {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        padding: 1.25rem 2rem;
-        gap: 0;
-    }
 }
 
 // ========
@@ -1271,12 +1224,12 @@ body {
 
 .error-404-code {
     font-size: 5rem;
-    font-family: 'automaton';
+    font-family: $font-accent;
     color: $retro-red;
 }
 
 .error-404-title {
-    font-family: 'automaton';
+    font-family: $font-accent;
     font-size: 2rem;
     color: $retro-black;
 }
