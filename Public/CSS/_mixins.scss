@@ -1,0 +1,13 @@
+// Centrage rapide Flexbox
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// Media Query pour Tablette et + (>= 768px)
+@mixin tablette {
+    @media (min-width: 768px) {
+        @content;
+    }
+}
